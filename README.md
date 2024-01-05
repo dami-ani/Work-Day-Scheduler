@@ -26,6 +26,8 @@ SO THAT I can manage my time effectively
 
 ## Site Preview:
 
+![Preview](./assets/images/05-third-party-apis-homework-demo.gif)
+
 ## License:
 ```md
 MIT License
