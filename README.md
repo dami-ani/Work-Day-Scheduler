@@ -24,11 +24,11 @@ SO THAT I can manage my time effectively
 * Persist events between refreshes of a page
 ```
 
-## Site Preview:
+## Site Preview
 
-![Preview](./assets/images/05-third-party-apis-homework-demo.gif)
+![Preview](./assets/images/demo.gif)
 
-## License:
+## License
 ```md
 MIT License
 ```
