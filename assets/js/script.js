@@ -14,24 +14,35 @@ function updateDate() {
   const now = new Date();
   const currentDate = now.toLocaleString();
   document.querySelector('#date').textContent = currentDate;
-  
 };
 
 
 // Color-code for past, present and future.
 const currentHour = dayjs().hour();
 
-$('.time-block').each(function () {
-  const blockHour = parseInt($(this).attr('id'));
-  if (blockHour < currentHour) {
-    $(this).addClass('past');
-  } else if (blockHour === currentHour) {
-    $(this).removeClass('past');
-    $(this).addClass('present');
-  } else {
-    $(this).addClass('future');
-  };
-});
+var timeBlocks = $('.time-block');
+const CheckTime = () => {
+  for (let i = 0; i < timeBlocks.length; i++) {
+    var idCheck = $(timeBlocks[i]).attr('id');
+    idCheck = idCheck.split("-");
+
+    //swap block class to handle color
+    if (currentHour > idCheck[1]) {
+      //Clear other two classes just in case to prevent bugs
+      $(timeBlocks[i]).removeClass('future');
+      $(timeBlocks[i]).removeClass('present');
+      $(timeBlocks[i]).addClass('past');
+    } else if (currentHour == idCheck[1]) {
+      $(timeBlocks[i]).removeClass('past');
+      $(timeBlocks[i]).removeClass('future');
+      $(timeBlocks[i]).addClass('present');
+    } else {
+      $(timeBlocks[i]).removeClass('present');
+      $(timeBlocks[i]).removeClass('past');
+      $(timeBlocks[i]).addClass('future');
+    }
+  }
+};
 
 // Funtion to save text in local storage when save button is clicked.
 $('.saveBtn').click(function () {
@@ -40,15 +51,19 @@ $('.saveBtn').click(function () {
   localStorage.setItem(blockHour, description);
 });
 
-      $('.time-block textarea').each(function () {
-        var blockHour = $(this).parent().attr('id');
-        var savedText = localStorage.getItem(blockHour);
-        if (savedText) {
-          $(this).val(savedText);
-        }
-      });
+$('.time-block textarea').each(function () {
+  var blockHour = $(this).parent().attr('id');
+  var savedText = localStorage.getItem(blockHour);
+  if (savedText) {
+    $(this).val(savedText);
+  }
+});
 
 
-
-      // This updates the above functions every 1000 milliseconds (1 second).
+// This updates the above functions every 1000 milliseconds (1 second).
 setInterval(updateDate, 1000);
+
+setInterval(function () {
+  //every min update
+  CheckTime();
+}, 1000);
