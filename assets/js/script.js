@@ -14,12 +14,11 @@ function updateDate() {
   const now = new Date();
   const currentDate = now.toLocaleString();
   document.querySelector('#date').textContent = currentDate;
+  
 };
 
-// This updates the above functions every 1000 milliseconds (1 second).
-setInterval(updateDate, 1000);
 
-// Color-code for: past, preasent and future:
+// Color-code for past, present and future.
 const currentHour = dayjs().hour();
 
 $('.time-block').each(function () {
@@ -35,3 +34,21 @@ $('.time-block').each(function () {
 });
 
 // Funtion to save text in local storage when save button is clicked.
+$('.saveBtn').click(function () {
+  var description = $(this).siblings('textarea').val();
+  var blockHour = $(this).parent().attr('id');
+  localStorage.setItem(blockHour, description);
+});
+
+      $('.time-block textarea').each(function () {
+        var blockHour = $(this).parent().attr('id');
+        var savedText = localStorage.getItem(blockHour);
+        if (savedText) {
+          $(this).val(savedText);
+        }
+      });
+
+
+
+      // This updates the above functions every 1000 milliseconds (1 second).
+setInterval(updateDate, 1000);
