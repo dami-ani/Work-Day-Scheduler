@@ -26,7 +26,7 @@ SO THAT I can manage my time effectively
 
 ## Site Preview
 
-![Preview](./assets/images/demo.gif)
+![Preview](./assets/images/Screenshot.png)
 
 ## License
 ```md
