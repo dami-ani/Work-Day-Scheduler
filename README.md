@@ -1,5 +1,7 @@
 # Work-Day-Scheduler
-A simple calendar application. 
+A simple calendar application.
+
+https://dami-ani.github.io/Work-Day-Scheduler/
 
 ## User Story
 ```md
